@@ -1,0 +1,38 @@
+.item {
+  box-shadow: inset 0 0 7px 4px rgba(255, 255, 255, 0.5);
+
+  width: 320px;
+  background-color: #4999ca;
+  border-radius: 20px/60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 25px;
+  font-size: 25px;
+}
+
+.itemTotal {
+  composes: item;
+  background-color: #e69225;
+}
+.itemPers {
+  composes: item;
+  background-color: #7de17b;
+  color: #e67c25;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.listSt {
+  width: 800px;
+  list-style: none;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px/60px;
+
+  background-color: #c5eaab;
+  box-shadow: inset 0 0 7px 4px rgba(255, 255, 255, 0.5);
+}
