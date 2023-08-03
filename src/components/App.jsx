@@ -1,55 +1,65 @@
-import React from 'react';
-
 import Statistics from 'components/Statistics/Statistics';
+import { useState } from 'react';
 
-import { Component } from 'react';
 import FeedbackOptions from 'components/FeedbackOptions/FeedbackOptions';
-
 import css from './Section/Section.module.css';
-
 import Notification from 'components/Notification/Notification';
 import Section from './Section/Section';
+// import useClicker from './hooks/cliker';
+const  pp = [
+"good",
+"neutral", 
+"bad",
+];
 
-class App extends Component {
-  state = {
+
+export const  App = ()=> {
+
+  // const [good, setGood  ] = useState(0);
+  // const [neutral, setNeutral] = useState(0);
+  // const [bad, setBad] = useState(0);
+
+
+  const [feedBack, setFeedback] = useState({
     good: 0,
     neutral: 0,
     bad: 0,
-  };
-
-  //  //  один змінювач на 3x
-  handleClick = event => {
+  })
+ 
+  //  оHOOKений змінювач на 3x
+  const  clicker = event => {
     // console.log( event.target)
-    const name = event.target.name;
-    this.setState(prevState => ({ [name]: prevState[name] + 1 }));
-  };
+    const {name} = event.target;
+    setFeedback(prevState => ({...prevState, [name]:  prevState[name] +1  }));
+   };
+ 
 
   // всього
-  countTotalFeedback = () => {
-    return `${this.state.good + this.state.bad + this.state.neutral}`;
+  const countTotalFeedback = () => {
+    return `${feedBack.good + feedBack.bad + feedBack.neutral}`;
   };
-  // відсоток гарних
-  countPositiveFeedbackPercentage = () => {
+  // // відсоток гарних
+ const  countPositiveFeedbackPercentage = () => {
     return Math.round(
-      `${(this.state.good * 100) / `${this.countTotalFeedback()}`}`
+      `${(feedBack.good * 100) / `${countTotalFeedback()}`}`
     );
-  };
+ }
 
-  render() {
-    return (
-      <div>
+
+      return (  
+         <div>
         <Section title="Ваші враження">
           {/* умова рендеру статистики */}
-          {this.countTotalFeedback() > 0 ? (
+          {countTotalFeedback() > 0 ? (
             <Statistics
-              good={this.state.good}
-              neutral={this.state.neutral}
-              bad={this.state.bad}
-              total={this.countTotalFeedback()}
-              positivePercentage={this.countPositiveFeedbackPercentage()}
+              good={feedBack.good}
+              neutral={feedBack.neutral}
+              bad={feedBack.bad}
+              total={countTotalFeedback()}
+              positivePercentage={countPositiveFeedbackPercentage()}
             />
           ) : (
-            <Notification massage={'Поки відгуків немає'} />
+          <Notification massage={'Поки відгуків немає'} />
           )}
         </Section>
 
@@ -57,14 +67,15 @@ class App extends Component {
           {/* кнопки */}
           <div className={css.feedBackWr}>
             <FeedbackOptions
-              options={Object.keys(this.state)}
-              onLeaveFeedback={this.handleClick}
+              options={pp}
+              onLeaveFeedback={clicker}
             />
           </div>
         </Section>
       </div>
-    );
-  }
-}
+        );
+          
+        }
+      
 
-export { App };
+
