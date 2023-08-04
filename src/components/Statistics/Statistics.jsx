@@ -1,8 +1,16 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 
 import css from './Statistics.module.css';
 
+import { Context } from 'components/App';
+
+
 const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
+const context = useContext(Context)
+
+
+
   return (
     <ul className={css.listSt}>
       <li className={css.item}>Добре {good}</li>
