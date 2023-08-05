@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import css from './Statistics.module.css';
 
@@ -24,10 +24,10 @@ const Statistics = () => {
 };
 
 // прототайпи
-Statistics.propTypes = {
-  feedBack: PropTypes.objectOf(PropTypes.string),
-  total: PropTypes.number,
-  positivePercentage: PropTypes.number,
-};
+// Statistics.propTypes = {
+//   feedBack: PropTypes.objectOf(PropTypes.string),
+//   total: PropTypes.number,
+//   positivePercentage: PropTypes.number,
+// };
 
 export default Statistics;

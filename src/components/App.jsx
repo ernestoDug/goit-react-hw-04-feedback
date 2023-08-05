@@ -35,7 +35,6 @@ export const App = () => {
   return (
     <Context.Provider
       value={{
-        stat: [feedBack, setFeedback],
         massage: 'Поки відгуків немає',
         total: countTotalFeedback(),
         positivePercentage: countPositiveFeedbackPercentage(),
@@ -61,7 +60,7 @@ export const App = () => {
   );
 };
 
-//ВАРІАНТ  НА ЮС РЕДЬЮС
+//ВАРІАНТ  з ЮС РЕДЬЮС але на кожну кнопку окремо...
 
 //   function reducer( prevState, action ){
 // switch (action.type) {

@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import css from './Notification.module.css';
 
@@ -13,6 +13,6 @@ export default function Notification() {
 }
 
 // // прототайпи
-Notification.propTypes = {
-  massage: PropTypes.string,
-};
+// Notification.propTypes = {
+//   massage: PropTypes.string,
+// };

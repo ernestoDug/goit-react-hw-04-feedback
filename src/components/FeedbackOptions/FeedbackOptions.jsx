@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { useContext } from 'react';
 import css from './FeedbackOptions.module.css';
@@ -10,9 +10,8 @@ const FeedbackOptions = () => {
 
   return (
     <>
-      {context.options.map((title, id) => (
+      {context.options.map(title => (
         <button
-          id={id}
           type="button"
           name={title}
           onClick={context.onLeaveFeedback}
@@ -27,9 +26,9 @@ const FeedbackOptions = () => {
 };
 
 // проптайпи
-FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string),
-  onLeaveFeedback: PropTypes.func,
-};
+// FeedbackOptions.propTypes = {
+//   options: PropTypes.arrayOf(PropTypes.string),
+//   onLeaveFeedback: PropTypes.func,
+// };
 
 export default FeedbackOptions;
