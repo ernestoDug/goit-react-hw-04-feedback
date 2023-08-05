@@ -2,32 +2,25 @@ import Statistics from 'components/Statistics/Statistics';
 import React, { useState } from 'react';
 
 import FeedbackOptions from 'components/FeedbackOptions/FeedbackOptions';
-import css from './Section/Section.module.css';
 import Notification from 'components/Notification/Notification';
 import Section from './Section/Section';
 import titleBtn from '../data/titleBtn';
-
+import css from './Section/Section.module.css';
 
 export const Context = React.createContext();
 
-
-
 export const App = () => {
-
-
   const [feedBack, setFeedback] = useState({
     good: 0,
     neutral: 0,
     bad: 0,
-});
-
-
+  });
 
   // //   змінювач на 3x
   const clicker = event => {
-    // console.log( event.target)
+    // console.log(event.target);
     const { name } = event.target;
-    setFeedback(prevState => ({ ...prevState, [name]: prevState[name] + 1 }));
+    setFeedback(prevState => ({ ...prevState, [name]: feedBack[name] + 1 }));
   };
 
   //   // всього
@@ -40,39 +33,35 @@ export const App = () => {
   };
 
   return (
-    <Context.Provider value= { {stat: [feedBack, setFeedback], massage: 'Поки відгуків немає',  total: countTotalFeedback(),
-    positivePercentage: countPositiveFeedbackPercentage() }}> 
-    
-    <div>
-      <Section title="Ваші враження">
-        {/* умова рендеру статистики */}
-        {countTotalFeedback() > 0 ? (
-          <Statistics
-            // good={feedBack.good}
-            // neutral={feedBack.neutral}
-            // bad={feedBack.bad}
-            // total={countTotalFeedback()}
-            // positivePercentage={countPositiveFeedbackPercentage()}
-          />
-        ) : (
-          <Notification massage={'Поки відгуків немає'} />
-        )}
-      </Section>
+    <Context.Provider
+      value={{
+        stat: [feedBack, setFeedback],
+        massage: 'Поки відгуків немає',
+        total: countTotalFeedback(),
+        positivePercentage: countPositiveFeedbackPercentage(),
+        options: titleBtn,
+        onLeaveFeedback: clicker,
+        feedBack: feedBack,
+      }}
+    >
+      <div>
+        <Section title="Ваші враження">
+          {/* умова рендеру статистики */}
+          {countTotalFeedback() > 0 ? <Statistics /> : <Notification />}
+        </Section>
 
-      <Section>
-        {/* кнопки */}
-        <div className={css.feedBackWr}>
-          <FeedbackOptions options={titleBtn} onLeaveFeedback={clicker} />
-        </div>
-      </Section>
-    </div>
+        <Section>
+          {/* кнопки */}
+          <div className={css.feedBackWr}>
+            <FeedbackOptions />
+          </div>
+        </Section>
+      </div>
     </Context.Provider>
   );
 };
 
-
-
-// АБО ЯК ВАРІАНТ змінювачі НА ЮС РЕДЬЮС
+//ВАРІАНТ  НА ЮС РЕДЬЮС
 
 //   function reducer( prevState, action ){
 // switch (action.type) {
